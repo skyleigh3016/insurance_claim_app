@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Registration and Login System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/register}">Register</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<br /><br />
+<div class="container">
+    <div class="row">
+        <h1 class="text-center"> Registration and Login System </h1>
+    </div>
+</div>
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="es">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    &lt;!&ndash; Bootstrap &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+<!--    &lt;!&ndash; Boxicons &ndash;&gt;-->
+<!--    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>-->
+<!--    &lt;!&ndash; My CSS &ndash;&gt;-->
+<!--    &lt;!&ndash;    <link rel="stylesheet" href="style.css">&ndash;&gt;-->
+<!--    <link rel="stylesheet" th:href="@{/css/style.css}">-->
+
+<!--    <title>Insurance App</title>-->
+<!--</head>-->
+<!--<body>-->
+
+
+<!--&lt;!&ndash; SIDEBAR &ndash;&gt;-->
+<!--<section id="sidebar">-->
+<!--    <a href="#" class="brand">-->
+<!--        <i class='bx bxs-smile'></i>-->
+<!--        <span class="text">Insurance Company</span>-->
+<!--    </a>-->
+<!--    <ul class="side-menu top">-->
+<!--        <li>-->
+<!--            <a th:href="@{/}">-->
+<!--                <i class='bx bxs-dashboard' ></i>-->
+<!--                <span class="text">Dashboard</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        &lt;!&ndash;        <li class="active">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <a href="#">&ndash;&gt;-->
+<!--        &lt;!&ndash;                <i class='bx bxs-shopping-bag-alt' ></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <span class="text">User Information</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </a>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </li>&ndash;&gt;-->
+<!--        <li class="active">-->
+<!--            <a th:href="@{/clients}">-->
+<!--                <i class='bx bxs-shopping-bag-alt' ></i>-->
+<!--                <span class="text">Client Information</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="#">-->
+<!--                <i class='bx bxs-doughnut-chart' ></i>-->
+<!--                <span class="text">Claimed Information</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="#">-->
+<!--                <i class='bx bxs-message-dots' ></i>-->
+<!--                <span class="text">Insurance Information</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        &lt;!&ndash;        <li>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <a href="#">&ndash;&gt;-->
+<!--        &lt;!&ndash;                <i class='bx bxs-group' ></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;                <span class="text">My Profile</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;            </a>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </li>&ndash;&gt;-->
+<!--    </ul>-->
+<!--    <ul class="side-menu">-->
+<!--        <li>-->
+<!--            <a href="#">-->
+<!--                <i class='bx bxs-cog' ></i>-->
+<!--                <span class="text">My Profile</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--        <li>-->
+<!--            <a href="#" class="logout">-->
+<!--                <i class='bx bxs-log-out-circle' ></i>-->
+<!--                <span class="text">Logout</span>-->
+<!--            </a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</section>-->
+<!--&lt;!&ndash; SIDEBAR &ndash;&gt;-->
+
+
+
+<!--&lt;!&ndash; CONTENT &ndash;&gt;-->
+<!--<section id="content">-->
+<!--    &lt;!&ndash; NAVBAR &ndash;&gt;-->
+<!--    <nav>-->
+<!--        <i class='bx bx-menu' ></i>-->
+
+
+<!--        &lt;!&ndash; <input type="checkbox" id="switch-mode" hidden>-->
+<!--        <label for="switch-mode" class="switch-mode"></label> &ndash;&gt;-->
+<!--        <a href="#" class="notification">-->
+<!--            <h5>Geraffe B. Andal</h5>-->
+<!--        </a>-->
+<!--        <a href="#" class="profile">-->
+<!--            <img th:src="@{/img/people.png}" alt="image" src="">-->
+<!--        </a>-->
+<!--    </nav>-->
+<!--    &lt;!&ndash; NAVBAR &ndash;&gt;-->
+
+<!--    &lt;!&ndash; MAIN &ndash;&gt;-->
+<!--    <main>-->
+<!--        <div class="head-title">-->
+<!--            <div class="left">-->
+<!--                <h1>Claim</h1>-->
+<!--                <ul class="breadcrumb">-->
+<!--                    <li>-->
+<!--                        <a href="#">Claim</a>-->
+<!--                    </li>-->
+<!--                    <li><i class='bx bx-chevron-right' ></i></li>-->
+<!--                    <li>-->
+<!--                        <a class="active" href="#">Claim Information</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div>-->
+
+<!--        </div>-->
+
+<!--        &lt;!&ndash;    <ul class="box-info">&ndash;&gt;-->
+<!--        &lt;!&ndash;      <li>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <i class='bx bxs-calendar-check' ></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <span class="text">&ndash;&gt;-->
+<!--        &lt;!&ndash;						<h3>1020</h3>&ndash;&gt;-->
+<!--        &lt;!&ndash;						<p>Clients</p>&ndash;&gt;-->
+<!--        &lt;!&ndash;					</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;      </li>&ndash;&gt;-->
+<!--        &lt;!&ndash;      <li>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <i class='bx bxs-group' ></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <span class="text">&ndash;&gt;-->
+<!--        &lt;!&ndash;						<h3>34</h3>&ndash;&gt;-->
+<!--        &lt;!&ndash;						<p>Insurances</p>&ndash;&gt;-->
+<!--        &lt;!&ndash;					</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;      </li>&ndash;&gt;-->
+<!--        &lt;!&ndash;      <li>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <i class='bx bxs-dollar-circle' ></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;        <span class="text">&ndash;&gt;-->
+<!--        &lt;!&ndash;						<h3>$2543</h3>&ndash;&gt;-->
+<!--        &lt;!&ndash;						<p>Total Claimed</p>&ndash;&gt;-->
+<!--        &lt;!&ndash;					</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;      </li>&ndash;&gt;-->
+<!--        &lt;!&ndash;    </ul>&ndash;&gt;-->
+
+
+<!--        <div class="table-data">-->
+<!--            <div class="order">-->
+<!--                &lt;!&ndash; <div class="head">-->
+<!--                  <h3>Claim Information</h3>-->
+<!--                  <a class="btn-btn-primary" th:href="@{/create/client}"><i class='bx bx-plus'><span>Add Client</span></i> </a>-->
+<!--                </div> &ndash;&gt;-->
+<!--                <table>-->
+<!--                    <thead>-->
+<!--                    <tr>-->
+<!--                        <th>insurance_category</th>-->
+<!--                        <th>vehicle_type</th>-->
+<!--                        <th>vehicle_uses</th>-->
+<!--                        <th>age_coverage</th>-->
+<!--                        <th>tenure</th>-->
+<!--                        <th>annual_premium</th>-->
+<!--                        <th>monthly_premium</th>-->
+<!--                        <th>amount_insured</th>-->
+<!--                        <th>createdOn</th>-->
+<!--                        <th>updatedOn</th>-->
+<!--                    </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                    <tr th:each="insurance :${insurances}">-->
+<!--                        <td>[[${insurance.insurance_category}]]</td>-->
+<!--                        <td>[[${insurance.vehicle_type}]]</td>-->
+<!--                        <td>[[${insurance.vehicle_uses}]]</td>-->
+<!--                        <td>[[${insurance.age_coverage}]]</td>-->
+<!--                        <td>[[${insurance.tenure}]]</td>-->
+<!--                        <td>[[${insurance.annual_premium}]]</td>-->
+<!--                        <td>[[${insurance.monthly_premium}]]</td>-->
+<!--                        <td>[[${insurance.amount_insured}]]</td>-->
+<!--                        <td>[[${insurance.createdOn}]]</td>-->
+<!--                        <td>[[${insurance.updatedOn}]]</td>-->
+<!--                        &lt;!&ndash; <td th:text="${insurance.insurance_category}"></td>-->
+<!--                        <td th:text="${insurance.vehicle_type}"></td>-->
+<!--                        <td th:text="${insurance.vehicle_uses}"></td>-->
+<!--                        <td th:text="${insurance.age_coverage}"></td>-->
+<!--                        <td th:text="${insurance.tenure}"></td>-->
+<!--                        <td th:text="${insurance.annual_premium}"></td>-->
+<!--                        <td th:text="${insurance.monthly_premium}"></td>-->
+<!--                        <td th:text="${insurance.amount_insured}"></td>-->
+<!--                        <td th:text="${insurance.createdOn}"></td>-->
+<!--                        <td th:text="${insurance.updatedOn}"></td> &ndash;&gt;-->
+<!--                        &lt;!&ndash; <td>-->
+<!--                            <a class="btn-btn-primary" th:href="@{/clients/{clientId}(clientId=${client.id})}">View </a>-->
+<!--                            <a class="btn-btn-primary" th:href="@{/clients/{clientId}/edit(clientId=${client.id})}">Edit </a>-->
+<!--                        </td> &ndash;&gt;-->
+<!--                    </tr>-->
+
+
+
+
+<!--                    </tbody>-->
+<!--                </table>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; <div class="todo">-->
+<!--                <div class="head">-->
+<!--                    <h3>Todos</h3>-->
+<!--                    <i class='bx bx-plus' ></i>-->
+<!--                    <i class='bx bx-filter' ></i>-->
+<!--                </div>-->
+<!--                <ul class="todo-list">-->
+<!--                    <li class="completed">-->
+<!--                        <p>Todo List</p>-->
+<!--                        <i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--                    </li>-->
+<!--                    <li class="completed">-->
+<!--                        <p>Todo List</p>-->
+<!--                        <i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--                    </li>-->
+<!--                    <li class="not-completed">-->
+<!--                        <p>Todo List</p>-->
+<!--                        <i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--                    </li>-->
+<!--                    <li class="completed">-->
+<!--                        <p>Todo List</p>-->
+<!--                        <i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--                    </li>-->
+<!--                    <li class="not-completed">-->
+<!--                        <p>Todo List</p>-->
+<!--                        <i class='bx bx-dots-vertical-rounded' ></i>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </div> &ndash;&gt;-->
+<!--        </div>-->
+<!--    </main>-->
+<!--    &lt;!&ndash; MAIN &ndash;&gt;-->
+<!--</section>-->
+<!--&lt;!&ndash; CONTENT &ndash;&gt;-->
+
+
+<!--<script th:src="@{/js/script.js}"></script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml"-->
+<!--      xmlns:th="http://www.thymeleaf.org"-->
+<!--      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
+<!--      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"-->
+<!--      layout:decorator="layout">-->
+
+<!--<head>-->
+<!--    <title>Home</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div layout:fragment="content">-->
+
+<!--    <p sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></p>-->
+<!--    <p><a th:href="@{/home}">User Home</a></p>-->
+<!--    <p><a th:href="@{/admin/home}">Admin Home</a></p>-->
+<!--    <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></p>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

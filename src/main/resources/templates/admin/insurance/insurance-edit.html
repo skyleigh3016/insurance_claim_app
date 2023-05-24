@@ -1,0 +1,229 @@
+<html
+        xmlns:th="http://thymeleaf.org"
+        xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <!--    <link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <title>Insurance App</title>
+</head>
+<body>
+<section id="sidebar">
+    <a href="#" class="brand">
+        <i class='bx bxs-smile'></i>
+        <span class="text">Insurance Company</span>
+    </a>
+    <ul class="side-menu top">
+        <li>
+            <a th:href="@{/dashboard}">
+                <i class='bx bxs-dashboard' ></i>
+                <span class="text">Dashboard</span>
+            </a>
+        </li>
+        <!--        <li class="active">-->
+        <!--            <a href="#">-->
+        <!--                <i class='bx bxs-shopping-bag-alt' ></i>-->
+        <!--                <span class="text">User Information</span>-->
+        <!--            </a>-->
+        <!--        </li>-->
+        <li>
+            <a th:href="@{/users}">
+                <!--                <i class='bx bxs-shopping-bag-alt' ></i>-->
+
+                <i class='bx bxs-user-account'></i>
+                <span class="text">Register Clients</span>
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/clients_info}">
+                <i class='bx bxs-user-rectangle' ></i>
+                <span class="text">Client Information</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/claims}">
+                <!--                <i class='bx bxs-doughnut-chart' ></i>-->
+                <i class='bx bxs-info-square'></i>
+                <span class="text">Claimed Information</span>
+            </a>
+        </li>
+        <li>
+            <a th:href="@{/Insurance}">
+                <!--                <i class='bx bxs-message-dots' ></i>-->
+                <i class='bx bxs-heart'></i>
+                <span class="text">Life Insurance Information</span>
+            </a>
+        </li>
+        <li class="active">
+            <a th:href="@{/vehicle}">
+                <!--                <i class='bx bxs-message-dots' ></i>-->
+                <i class='bx bxs-car'></i>
+                <span class="text">Vehicle Insurance Information</span>
+            </a>
+        </li>
+        <!--        <li>-->
+        <!--            <a href="#">-->
+        <!--                <i class='bx bxs-group' ></i>-->
+        <!--                <span class="text">My Profile</span>-->
+        <!--            </a>-->
+        <!--        </li>-->
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a th:href="@{/profile}">
+                <!--                <i class='bx bxs-cog' ></i>-->
+                <i class='bx bxs-user-detail'></i>
+                <span class="text">My Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/logout}" class="logout">
+                <i class='bx bxs-log-out-circle' ></i>
+                <span class="text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</section>
+<!-- CONTENT -->
+<section  id="content">
+    <!-- NAVBAR -->
+    <nav>
+        <i class='bx bx-menu' ></i>
+
+
+        <!-- <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label> -->
+        <a href="#" class="notification">
+            <span sec:authentication="principal.username"> User</span>
+        </a>
+        <a href="#" class="profile">
+            <img th:src="@{/img/people.png}" alt="image" src="">
+        </a>
+    </nav>
+    <!-- NAVBAR -->
+
+    <!-- MAIN -->
+    <main>
+        <div class="head-title">
+            <div class="left">
+                <h1>Insurance</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Insurance</a>
+                    </li>
+                    <li><i class='bx bx-chevron-right' ></i></li>
+                    <li>
+                        <a class="active" href="#">Insurance Information</a>
+                    </li>
+                    <li><i class='bx bx-chevron-right' ></i></li>
+                    <li>
+                        <a class="active" href="#">Edit Insurance</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+
+
+        <div class="table-data">
+            <div class="order">
+                <div class="head">
+                    <h3>Edit Insurance Form</h3>
+                    <!--                    <a class="btn-btn-primary" th:href="@{/create/insurance}"><i class='bx bx-plus'><span>Add Life Insurance</span></i> </a>-->
+                </div>
+                <form role="form" method="post" th:action="@{/insurance/{insuranceId}/edit(insuranceId=${insurance.id})}"  th:object="${insurance}">
+                    <input type="hidden" th:field="*{id}">
+                    <div class="form-group">
+                        <label for="insurance_type">Insurance Type</label>
+                        <input type="text"
+                               class="form-control"
+                               id="insurance_type"
+                               name="insurance_type"
+                               th:field="*{insurance_type}"
+                               aria-describedby="insurance_type"
+                               placeholder="Enter insurance type">
+                        <p th:if="${#fields.hasErrors('insurance_type')}" class="text-danger" th:errors="*{insurance_type}"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="age_coverage">Age Coverage</label>
+                        <input
+                                type="number"
+                                class="form-control"
+                                id="age_coverage"
+                                name="age_coverage"
+                                th:field="*{age_coverage}"
+                                placeholder="age_coverage">
+                        <p th:if="${#fields.hasErrors('age_coverage')}" class="text-danger" th:errors="*{age_coverage}"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="tenure">Tenure</label>
+                        <input
+                                type="number"
+                                class="form-control"
+                                id="tenure"
+                                name="tenure"
+                                th:field="*{tenure}"
+                                aria-describedby="emailHelp"
+                                placeholder="Enter tenure">
+                        <p th:if="${#fields.hasErrors('tenure')}" class="text-danger" th:errors="*{tenure}"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="annual_premium">Annual Premium</label>
+                        <input
+                                type="number"
+                                class="form-control"
+                                id="annual_premium"
+                                name="annual_premium"
+                                th:field="*{annual_premium}"
+                                placeholder="annual_premium">
+                        <p th:if="${#fields.hasErrors('annual_premium')}" class="text-danger" th:errors="*{annual_premium}"></p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthly_premium">Monthly Premium</label>
+                        <input
+                                type="number"
+                                class="form-control"
+                                id="monthly_premium"
+                                name="monthly_premium"
+                                th:field="*{monthly_premium}"
+                                placeholder="monthly_premium">
+                        <p th:if="${#fields.hasErrors('monthly_premium')}" class="text-danger" th:errors="*{monthly_premium}"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount_insured">Amount Insured</label>
+                        <input
+                                type="number"
+                                class="form-control"
+                                id="amount_insured"
+                                name="amount_insured"
+                                th:field="*{amount_insured}"
+                                placeholder="amount_insured">
+                        <p th:if="${#fields.hasErrors('amount_insured')}" class="text-danger" th:errors="*{amount_insured}"></p>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+                <!--                //put here the content-->
+            </div>
+
+        </div>
+    </main>
+    <!-- MAIN -->
+</section>
+<!-- CONTENT -->
+<script th:src="@{/js/script.js}"></script>
+
+</body>
+
+</html>

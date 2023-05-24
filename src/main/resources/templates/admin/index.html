@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Boxicons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <!-- My CSS -->
+    <!--    <link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <title>Insurance App</title>
+</head>
+<body>
+
+
+<!-- SIDEBAR -->
+<section id="sidebar">
+    <a href="#" class="brand">
+        <i class='bx bxs-smile'></i>
+        <span class="text">Insurance Company</span>
+    </a>
+    <ul class="side-menu top">
+        <li class="active">
+            <a th:href="@{/dashboard}">
+                <i class='bx bxs-dashboard' ></i>
+                <span class="text">Dashboard</span>
+            </a>
+        </li>
+        <!--        <li class="active">-->
+        <!--            <a href="#">-->
+        <!--                <i class='bx bxs-shopping-bag-alt' ></i>-->
+        <!--                <span class="text">User Information</span>-->
+        <!--            </a>-->
+        <!--        </li>-->
+<!--        div sec:authorize="hasRole('ROLE_ADMIN')">-->
+<!--        <li sec:authorize="hasRole('ROLE_USER')">-->
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/users}">
+                <!--                <i class='bx bxs-shopping-bag-alt' ></i>-->
+
+                <i class='bx bxs-user-account'></i>
+                <span class="text">Registered Clients</span>
+            </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/clients_info}">
+                <i class='bx bxs-user-rectangle' ></i>
+                <span class="text">Client Information</span>
+            </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_USER')">
+            <a th:href="@{/my-insurance}">
+                <i class='bx bxs-user-rectangle' ></i>
+                <span class="text">My Insurance</span>
+            </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/claims}">
+                <!--                <i class='bx bxs-doughnut-chart' ></i>-->
+                <i class='bx bxs-info-square'></i>
+                <span class="text">Claimed Information</span>
+            </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_USER')">
+            <a th:href="@{/user-claims}">
+                <!--                <i class='bx bxs-doughnut-chart' ></i>-->
+                <i class='bx bxs-info-square'></i>
+                <span class="text">My Claimed Information</span>
+            </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/Insurance}">
+                <!--                <i class='bx bxs-message-dots' ></i>-->
+                <i class='bx bxs-heart'></i>
+                <span class="text">Life Insurance Information</span>
+            </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_USER')">
+            <a th:href="@{/user-insurance}">
+                <!--                <i class='bx bxs-message-dots' ></i>-->
+                <i class='bx bxs-heart'></i>
+                <span class="text">Life Insurance Offered</span>
+            </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/vehicle}">
+                <!--                <i class='bx bxs-message-dots' ></i>-->
+                <i class='bx bxs-car'></i>
+                <span class="text">Vehicle Insurance Information</span>
+            </a>
+        </li>
+
+        <li sec:authorize="hasRole('ROLE_USER')">
+            <a th:href="@{/user-vehicle}">
+                <!--                <i class='bx bxs-message-dots' ></i>-->
+                <i class='bx bxs-car'></i>
+                <span class="text">Vehicle Insurance Offered</span>
+            </a>
+        </li>
+
+        <!--        <li>-->
+        <!--            <a href="#">-->
+        <!--                <i class='bx bxs-group' ></i>-->
+        <!--                <span class="text">My Profile</span>-->
+        <!--            </a>-->
+        <!--        </li>-->
+    </ul>
+    <ul class="side-menu">
+        <li>
+            <a th:href="@{/profile}">
+                <!--                <i class='bx bxs-cog' ></i>-->
+                <i class='bx bxs-user-detail'></i>
+                <span class="text">My Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/logout}" class="logout">
+                <i class='bx bxs-log-out-circle' ></i>
+                <span class="text">Logout</span>
+            </a>
+        </li>
+    </ul>
+</section>
+<!-- SIDEBAR -->
+
+
+
+<!-- CONTENT -->
+<section id="content">
+    <!-- NAVBAR -->
+    <nav>
+        <i class='bx bx-menu' ></i>
+
+
+        <!-- <input type="checkbox" id="switch-mode" hidden>
+        <label for="switch-mode" class="switch-mode"></label> -->
+        <a href="#" class="notification">
+            <!--      <h5>Geraffe B. Andal</h5>-->
+            <span sec:authentication="principal.username"> User</span>
+        </a>
+        <a href="#" class="profile">
+            <img th:src="@{/img/people.png}">
+        </a>
+    </nav>
+    <!-- NAVBAR -->
+
+    <!-- MAIN -->
+    <main>
+        <div class="head-title">
+            <div class="left">
+                <h1>Dashboard</h1>
+                <ul class="breadcrumb">
+                    <li>
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li><i class='bx bx-chevron-right' ></i></li>
+                    <li>
+                        <a class="active" href="#">Home</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <ul class="box-info">
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
+                <i class='bx bxs-group' ></i>
+                <span class="text">
+						<h3 th:text = "${users}">34</h3>
+						<p>Registered Clients</p>
+					</span>
+            </li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
+                <i class='bx bxs-heart' ></i>
+                <span class="text">
+						<h3 th:text = "${life}">1020</h3>
+						<p>Life Insurance</p>
+					</span>
+            </li>
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
+                <i class='bx bxs-car' ></i>
+                <span class="text">
+						<h3 th:text = "${vehicle}">34</h3>
+						<p>Vehicle Insurance</p>
+					</span>
+            </li >
+            <li sec:authorize="hasRole('ROLE_ADMIN')">
+                <i class='bx bxs-dollar-circle' ></i>
+                <span class="text">
+						<h3 th:text = "${amount}">2543</h3>
+						<p>Claimed Amount</p>
+					</span>
+            </li>
+
+            <li sec:authorize="hasRole('ROLE_USER')">
+                <i class='bx bxs-heart' ></i>
+                <span class="text">
+						<h3 th:text = "${life}">2</h3>
+						<p>Life Insurance Offer</p>
+					</span>
+            </li>
+            <li sec:authorize="hasRole('ROLE_USER')">
+                <i class='bx bxs-car' ></i>
+                <span class="text">
+						<h3 th:text = "${vehicle}">4</h3>
+						<p>Vehicle Insurance Offer</p>
+					</span>
+            </li >
+            <li sec:authorize="hasRole('ROLE_USER')">
+                <i class='bx bxs-dollar-circle' ></i>
+                <span class="text">
+						<h3 th:text = "${myAmount}">2543</h3>
+						<p>My Claimed Amount</p>
+					</span>
+            </li>
+        </ul>
+
+
+        <div class="table-data" sec:authorize="hasRole('ROLE_ADMIN')">
+            <div class="order">
+                <div class="head">
+                    <h3>Client Status</h3>
+                    <i class='bx bx-search' ></i>
+                    <i class='bx bx-filter' ></i>
+                </div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Client Name</th>
+                        <!--                        <th>Gender</th>-->
+                        <th>Insurance Type</th>
+                        <th>Tenure</th>
+                        <th>Monthly Premium</th>
+                        <th>Annual Premium</th>
+                        <th>Amount Insured</th>
+                        <th>status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="clients :${clients}">
+
+                        <td>[[${clients.name}]]</td>
+                        <!--                        <td>[[${clients.name}]]</td>-->
+                        <td>[[${clients.insurance_type}]]</td>
+                        <td>[[${clients.tenure}]]</td>
+                        <td>[[${clients.monthly_premium}]]</td>
+                        <td>[[${clients.annual_premium}]]</td>
+                        <td>[[${clients.amount_insured}]]</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="todo">
+                <div class="head">
+                    <h3>Todos</h3>
+                    <i class='bx bx-plus' ></i>
+                    <i class='bx bx-filter' ></i>
+                </div>
+                <ul class="todo-list">
+                    <li class="completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                    <li class="completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                    <li class="not-completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                    <li class="completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                    <li class="not-completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                </ul>
+            </div> -->
+        </div>
+
+        <div class="table-data" sec:authorize="hasRole('ROLE_USER')">
+            <div class="order">
+                <div class="head">
+                    <h3>Claimed Status</h3>
+                    <i class='bx bx-search' ></i>
+                    <i class='bx bx-filter' ></i>
+                </div>
+                <table>
+                    <thead>
+
+                    <tr>
+                        <th>claimer</th>
+                        <th>client</th>
+
+                        <th>document</th>
+                        <th>claim_amount</th>
+                        <th>status</th>
+                    </tr>
+
+                    </thead>
+                    <tbody>
+                    <tr th:each="claim :${claims}">
+
+                        <td>[[${claim.claimer}]]</td>
+                        <td>[[${claim.client}]]</td>
+
+                        <td>[[${claim.document}]]</td>
+                        <td>[[${claim.claim_amount}]]</td>
+                        <td>[[${claim.status}]]</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- <div class="todo">
+                <div class="head">
+                    <h3>Todos</h3>
+                    <i class='bx bx-plus' ></i>
+                    <i class='bx bx-filter' ></i>
+                </div>
+                <ul class="todo-list">
+                    <li class="completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                    <li class="completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                    <li class="not-completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                    <li class="completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                    <li class="not-completed">
+                        <p>Todo List</p>
+                        <i class='bx bx-dots-vertical-rounded' ></i>
+                    </li>
+                </ul>
+            </div> -->
+        </div>
+
+    </main>
+    <!-- MAIN -->
+</section>
+<!-- CONTENT -->
+
+
+<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
