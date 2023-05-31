@@ -2,10 +2,8 @@ package com.OJTProject.InsuranceAndClaimApp.controller;
 
 
 import com.OJTProject.InsuranceAndClaimApp.config.CustomUserDetails;
-import com.OJTProject.InsuranceAndClaimApp.dto.ClientDto;
-import com.OJTProject.InsuranceAndClaimApp.dto.InsuranceDto;
-import com.OJTProject.InsuranceAndClaimApp.dto.ResponseDto;
-import com.OJTProject.InsuranceAndClaimApp.dto.VehiclesDto;
+import com.OJTProject.InsuranceAndClaimApp.dto.*;
+import com.OJTProject.InsuranceAndClaimApp.model.Beneficiary;
 import com.OJTProject.InsuranceAndClaimApp.model.Client;
 import com.OJTProject.InsuranceAndClaimApp.model.Insurance;
 import com.OJTProject.InsuranceAndClaimApp.model.User;
@@ -41,6 +39,9 @@ public class ClientController {
     private BeneficiaryService beneficiaryService;
     @Autowired
     private DependentService dependentService;
+
+    @Autowired
+    private VehicleService vehicleService;
 
 
 
@@ -87,6 +88,7 @@ public class ClientController {
                               @RequestParam("age5") int age5,
                               @RequestParam("contact5") String contact5,
                               @RequestParam("address5") String address5,
+                              @RequestParam("insurance_type") String insurance_type,
                               @ModelAttribute("event") ClientDto clientDto,
                               @ModelAttribute("vehicle") VehiclesDto vehiclesDto,
                               @ModelAttribute("insurance") Insurance insurances,Model model) {
@@ -94,6 +96,15 @@ public class ClientController {
 //            model.addAttribute("client", clientDto);
 //            return "admin/client/client-create";
 //        }
+        if (insurance_type.equals("Vehicle_Insurance")){
+            clientDto.setInsurances(insurances);
+            clientService.createClient(userId, clientDto);
+            clientService.createVehicles(userId, vehiclesDto);
+            beneficiaryService.insertBeneficiary1(userId,beneficiary,contact,age,address,beneficiary1,contact1,age1,address1,beneficiary2,contact2,age2,address2);
+            dependentService.insertDependent(userId,dependent,contact3,age3,address3,dependent1,contact4,age4,address4,dependent2,contact5,age5,address5);
+            return "redirect:/users";
+        }
+
         if (age >= 18 && age1 >= 18 && age2 >= 18 && age3 >= 18 && age4 >= 18 && age5 >= 18){
             clientDto.setInsurances(insurances);
             clientService.createClient(userId, clientDto);
@@ -129,6 +140,12 @@ public class ClientController {
     @GetMapping("/client/{clientId}/view")
     public String viewClient(@PathVariable("clientId")Long userId, Model model){
         User user = userService.findUserById(userId);
+        List<BeneficiaryDto> beneficiary = beneficiaryService.findUserInsurance1(userId);
+        List<DependentDto> dependent = dependentService.findUserInsurance(userId);
+        List<VehiclesDto> vehicle = vehicleService.findUserVehicle(userId);
+        model.addAttribute("beneficiary1",beneficiary);
+        model.addAttribute("dependent",dependent);
+        model.addAttribute("vehicle",vehicle);
         model.addAttribute("user",user);
         return "admin/client/view-client";
     }

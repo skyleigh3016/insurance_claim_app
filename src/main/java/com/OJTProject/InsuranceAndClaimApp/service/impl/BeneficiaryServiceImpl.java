@@ -1,19 +1,14 @@
 package com.OJTProject.InsuranceAndClaimApp.service.impl;
 
-import com.OJTProject.InsuranceAndClaimApp.dto.ClientDto;
-import com.OJTProject.InsuranceAndClaimApp.dto.VehiclesDto;
-import com.OJTProject.InsuranceAndClaimApp.model.Beneficiary;
-import com.OJTProject.InsuranceAndClaimApp.model.Client;
-import com.OJTProject.InsuranceAndClaimApp.model.User;
-import com.OJTProject.InsuranceAndClaimApp.model.Vehicle;
+import com.OJTProject.InsuranceAndClaimApp.dto.BeneficiaryDto;
+import com.OJTProject.InsuranceAndClaimApp.model.*;
 import com.OJTProject.InsuranceAndClaimApp.repository.BeneficiaryRepository;
-import com.OJTProject.InsuranceAndClaimApp.repository.ClientRepository;
 import com.OJTProject.InsuranceAndClaimApp.repository.UserRepository;
-import com.OJTProject.InsuranceAndClaimApp.repository.VehicleRepository;
 import com.OJTProject.InsuranceAndClaimApp.service.BeneficiaryService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BeneficiaryServiceImpl implements BeneficiaryService {
@@ -25,7 +20,7 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
     }
 
 
-//    @Override
+    //    @Override
     public void insertBeneficiary(Long userId) {
         User user = userRepository.findById(userId).get();
         Beneficiary beneficiary = new Beneficiary();
@@ -70,5 +65,32 @@ public class BeneficiaryServiceImpl implements BeneficiaryService {
         beneficiary5.setUser(user);
 
         beneficiaryRepository.saveAll(List.of(beneficiary4,beneficiary3,beneficiary5));
+    }
+
+//    @Override
+//    public List<BeneficiaryDto> findUserInsurance(Long userId) {
+//        List<Beneficiary> beneficiaries = beneficiaryRepository.findByAddLineContains(userId);
+//        return beneficiaries.stream().map((beneficiary) -> mapToBeneficiaryDto(beneficiary)).collect(Collectors.toList());
+//
+//    }
+
+    @Override
+    public List<BeneficiaryDto> findUserInsurance1(Long userId) {
+        List<Beneficiary> beneficiaries = beneficiaryRepository.findByAddLineContains(userId);
+        return beneficiaries.stream().map((beneficiary) -> mapToBeneficiaryDto(beneficiary)).collect(Collectors.toList());
+
+    }
+
+    private BeneficiaryDto mapToBeneficiaryDto(Beneficiary beneficiary) {
+        BeneficiaryDto beneficiaryDto = BeneficiaryDto.builder()
+                .id(beneficiary.getId())
+                .beneficiary(beneficiary.getBeneficiary())
+                .age(beneficiary.getAge())
+                .contact(beneficiary.getContact())
+                .address(beneficiary.getAddress())
+                .createdOn(beneficiary.getCreatedOn())
+                .updatedOn(beneficiary.getUpdatedOn())
+                .build();
+        return beneficiaryDto;
     }
 }

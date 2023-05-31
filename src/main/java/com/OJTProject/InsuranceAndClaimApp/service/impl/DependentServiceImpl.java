@@ -1,5 +1,7 @@
 package com.OJTProject.InsuranceAndClaimApp.service.impl;
 
+import com.OJTProject.InsuranceAndClaimApp.dto.BeneficiaryDto;
+import com.OJTProject.InsuranceAndClaimApp.dto.DependentDto;
 import com.OJTProject.InsuranceAndClaimApp.model.Beneficiary;
 import com.OJTProject.InsuranceAndClaimApp.model.Dependent;
 import com.OJTProject.InsuranceAndClaimApp.model.User;
@@ -11,6 +13,7 @@ import com.OJTProject.InsuranceAndClaimApp.service.DependentService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DependentServiceImpl implements DependentService {
@@ -47,5 +50,25 @@ public class DependentServiceImpl implements DependentService {
         dependent5.setUser(user);
 
         dependentRepository.saveAll(List.of(dependent3,dependent4,dependent5));
+    }
+
+    @Override
+    public List<DependentDto> findUserInsurance(Long userId) {
+        List<Dependent> dependents = dependentRepository.findByAddLineContains(userId);
+        return dependents.stream().map((dependent) -> mapToDependentDto(dependent)).collect(Collectors.toList());
+
+    }
+
+    private DependentDto mapToDependentDto(Dependent dependent) {
+        DependentDto dependentDto = DependentDto.builder()
+                .id(dependent.getId())
+                .dependent(dependent.getDependent())
+                .age(dependent.getAge())
+                .contact(dependent.getContact())
+                .address(dependent.getAddress())
+                .createdOn(dependent.getCreatedOn())
+                .updatedOn(dependent.getUpdatedOn())
+                .build();
+        return dependentDto;
     }
 }
