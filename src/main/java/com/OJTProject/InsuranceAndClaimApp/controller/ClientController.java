@@ -88,7 +88,7 @@ public class ClientController {
                               @RequestParam("age5") int age5,
                               @RequestParam("contact5") String contact5,
                               @RequestParam("address5") String address5,
-                              @RequestParam("insurance_type") String insurance_type,
+//                              @RequestParam("insurance_type") String insurance_type,
                               @ModelAttribute("event") ClientDto clientDto,
                               @ModelAttribute("vehicle") VehiclesDto vehiclesDto,
                               @ModelAttribute("insurance") Insurance insurances,Model model) {
@@ -96,19 +96,19 @@ public class ClientController {
 //            model.addAttribute("client", clientDto);
 //            return "admin/client/client-create";
 //        }
-        if (insurance_type.equals("Vehicle_Insurance")){
+        if (age >= 100){
             clientDto.setInsurances(insurances);
             clientService.createClient(userId, clientDto);
             clientService.createVehicles(userId, vehiclesDto);
-            beneficiaryService.insertBeneficiary1(userId,beneficiary,contact,age,address,beneficiary1,contact1,age1,address1,beneficiary2,contact2,age2,address2);
-            dependentService.insertDependent(userId,dependent,contact3,age3,address3,dependent1,contact4,age4,address4,dependent2,contact5,age5,address5);
+//            beneficiaryService.insertBeneficiary1(userId,beneficiary,contact,age,address,beneficiary1,contact1,age1,address1,beneficiary2,contact2,age2,address2);
+//            dependentService.insertDependent(userId,dependent,contact3,age3,address3,dependent1,contact4,age4,address4,dependent2,contact5,age5,address5);
             return "redirect:/users";
         }
 
         if (age >= 18 && age1 >= 18 && age2 >= 18 && age3 >= 18 && age4 >= 18 && age5 >= 18){
             clientDto.setInsurances(insurances);
             clientService.createClient(userId, clientDto);
-            clientService.createVehicles(userId, vehiclesDto);
+//            clientService.createVehicles(userId, vehiclesDto);
             beneficiaryService.insertBeneficiary1(userId,beneficiary,contact,age,address,beneficiary1,contact1,age1,address1,beneficiary2,contact2,age2,address2);
             dependentService.insertDependent(userId,dependent,contact3,age3,address3,dependent1,contact4,age4,address4,dependent2,contact5,age5,address5);
             return "redirect:/users?success";

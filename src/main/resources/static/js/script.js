@@ -65,6 +65,36 @@ const theDive1 = document.getElementById("theDive1")
 const theDive2 = document.getElementById("theDive2")
 const theDive3 = document.getElementById("theDive3")
 
+const beneficiary = document.getElementById("beneficiary")
+const age = document.getElementById("age")
+const contact = document.getElementById("contact")
+const address = document.getElementById("address")
+
+const beneficiary1 = document.getElementById("beneficiary1")
+const age1 = document.getElementById("age1")
+const contact1 = document.getElementById("contact1")
+const address1 = document.getElementById("address1")
+
+const beneficiary2 = document.getElementById("beneficiary2")
+const age2 = document.getElementById("age2")
+const contact2 = document.getElementById("contact2")
+const address2 = document.getElementById("address2")
+
+const dependent = document.getElementById("dependent")
+const age3 = document.getElementById("age3")
+const contact3 = document.getElementById("contact3")
+const address3 = document.getElementById("address3")
+
+const dependent1 = document.getElementById("dependent1")
+const age4 = document.getElementById("age4")
+const contact4 = document.getElementById("contact4")
+const address4 = document.getElementById("address4")
+
+const dependent2 = document.getElementById("dependent2")
+const age5 = document.getElementById("age5")
+const contact5 = document.getElementById("contact5")
+const address5 = document.getElementById("address5")
+
 
 insurance_type1.addEventListener("change", function (event){
 	if (event.target.value == 'Vehicle_Insurance'){
@@ -72,7 +102,61 @@ insurance_type1.addEventListener("change", function (event){
 		// theDiv.style.display = "none";
 		theDive1.style.display = "block";
 		theDive2.style.display = "block";
-		theDive3.remove();
+		theDive3.style.display = "none";
+		beneficiary.removeAttribute("required");
+		age.removeAttribute("required");
+		contact.removeAttribute("required");
+		address.removeAttribute("required");
+		beneficiary.value = "no";
+		age.value = 100;
+		contact.value = "no";
+		address.value = "no";
+		beneficiary1.value = "no";
+		age1.value = 100;
+		contact1.value = "no";
+		address1.value = "no";
+		beneficiary2.value = "no";
+		age2.value = 100;
+		contact2.value = "no";
+		address2.value = "no";
+
+		dependent.value = "no";
+		age3.value = 100;
+		contact3.value = "no";
+		address3.value = "no";
+		dependent1.value = "no";
+		age4.value = 100;
+		contact4.value = "no";
+		address4.value = "no";
+		dependent2.value = "no";
+		age5.value = 100;
+		contact5.value = "no";
+		address5.value = "no";
+
+		beneficiary1.removeAttribute("required");
+		age1.removeAttribute("required");
+		contact1.removeAttribute("required");
+		address1.removeAttribute("required");
+
+		beneficiary2.removeAttribute("required");
+		age2.removeAttribute("required");
+		contact2.removeAttribute("required");
+		address2.removeAttribute("required");
+
+		dependent.removeAttribute("required");
+		age3.removeAttribute("required");
+		contact3.removeAttribute("required");
+		address3.removeAttribute("required");
+
+		dependent1.removeAttribute("required");
+		age4.removeAttribute("required");
+		contact4.removeAttribute("required");
+		address4.removeAttribute("required");
+
+		dependent2.removeAttribute("required");
+		age5.removeAttribute("required");
+		contact5.removeAttribute("required");
+		address5.removeAttribute("required");
 
 	}
 	else {
