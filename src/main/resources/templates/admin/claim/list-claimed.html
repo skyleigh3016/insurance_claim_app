@@ -137,36 +137,37 @@
 
     <div class="table-data">
       <div class="order">
-        <div class="head">
-          <h3>Claimed Insurance Information</h3>
-          <a class="btn-btn-primary" th:href="@{/claim/new}"><i class='bx bx-plus'><span>Add Claimed</span></i> </a>
-        </div>
+<!--        <div class="head">-->
+<!--          <h3>Claimed Insurance Information</h3>-->
+<!--          <a class="btn-btn-primary" th:href="@{/claim/new}"><i class='bx bx-plus'><span>Add Claimed</span></i> </a>-->
+<!--        </div>-->
         <table>
           <thead>
           <tr>
-            <th>claimer</th>
-            <th>client</th>
-            <th>admin</th>
-            <th>document</th>
-            <th>claim_amount</th>
-            <th>status</th>
-            <th>action</th>
+
+
+            <th>Claimer</th>
+            <th>Client</th>
+            <th>Supporting document</th>
+            <th>Claim Amount</th>
+            <th>Status</th>
+            <th>Actions</th>
             <!--                        <th>createdOn</th>-->
             <!--                        <th>updatedOn</th>-->
           </tr>
           </thead>
           <tbody>
-          <tr th:each="claim :${claims}">
-           <td>[[${claim.claimer}]]</td>
-            <td>[[${claim.client}]]</td>
-            <td>[[${claim.admin}]]</td>
-            <td>[[${claim.document}]]</td>
-            <td>[[${claim.claim_amount}]]</td>
-            <td>[[${claim.status}]]</td>
-            <td>
-              <a class="btn btn-primary" th:href="@{/claims/{claimId}/delete(claimId=${claim.id})}" onclick="return checkdelete()"><i class='bx bx-trash'></i></a>
+          <tr th:each="file : ${files}">
 
-              <a class="btn-btn-primary" th:href="@{/claim/{claimId}/edit(claimId=${claim.id})}"><i class='bx bxs-edit-alt'></i></a>
+            <td th:text="${file.claimer}"></td>
+            <td th:text="${file.client}"></td>
+            <td th:text="${file.fileName}"></td>
+            <td th:text="${file.claim_amount}"></td>
+            <td th:text="${file.status}"></td>
+            <td>
+              <a th:href="@{/display/{id}(id=${file.id})}" target="_blank">View Document</a>
+<!--              <a class="btn btn-primary" th:href="@{/claims/{claimId}/delete(claimId=${claim.id})}" onclick="return checkdelete()"><i class='bx bx-trash'></i></a>-->
+<!--              <a class="btn-btn-primary" th:href="@{/claim/{claimId}/edit(claimId=${claim.id})}"><i class='bx bxs-edit-alt'></i></a>-->
             </td>
 
 
@@ -211,6 +212,9 @@
   </main>
   <!-- MAIN -->
 </section>
+
+<!--<embed th:attr="src=@{/img/BSIS_V2.pdf}" type="application/pdf" width="100%" height="600px" />-->
+<!--<iframe src="/img/BSIS_V2.pdf" width="100%" height="800px"></iframe>-->
 <!-- CONTENT -->
 
 <script th:src="@{/js/script.js}"></script>

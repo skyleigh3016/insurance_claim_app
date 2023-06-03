@@ -104,12 +104,12 @@
     <!-- <input type="checkbox" id="switch-mode" hidden>
     <label for="switch-mode" class="switch-mode"></label> -->
     <a href="#" class="notification">
-
-      <span sec:authentication="principal.username"> Client</span>
+      <!--      <h5>Geraffe B. Andal</h5>-->
+      <span th:text = "${user.name}"> User</span>
     </a>
     <a href="#" class="profile">
-      <img th:src="@{/img/people.png}" alt="image" src="">
-
+      <img th:src="@{${user.avatar}}" alt="users dp" />
+      <!--            <img th:src="@{${user.avatar}}">-->
     </a>
   </nav>
   <!-- NAVBAR -->
@@ -136,6 +136,13 @@
 
     <div class="table-data">
       <div class="order">
+
+        <div th:if="${param.success}">
+          <div class="alert alert-info">
+            You have successfully created the insurance application!
+          </div>
+        </div>
+
         <div class="head">
           <h3>Registered Clients</h3>
           <a class="btn-btn-primary" th:href="@{/user/register}"><i class='bx bx-plus'><span>Add New Client</span></i> </a>

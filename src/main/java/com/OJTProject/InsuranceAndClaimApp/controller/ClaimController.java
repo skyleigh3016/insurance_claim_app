@@ -8,9 +8,12 @@ import com.OJTProject.InsuranceAndClaimApp.dto.ResponseDto;
 import com.OJTProject.InsuranceAndClaimApp.dto.ResponseUserClaimDto;
 import com.OJTProject.InsuranceAndClaimApp.model.Claim;
 
+import com.OJTProject.InsuranceAndClaimApp.repository.PdfFileRepository;
+import com.OJTProject.InsuranceAndClaimApp.repository.UserRepository;
 import com.OJTProject.InsuranceAndClaimApp.service.ClaimService;
 
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,9 +27,14 @@ import java.util.List;
 
 @Controller
 public class ClaimController {
+    private final PdfFileRepository pdfFileRepository;
+
+    private final UserRepository userRepository;
 
     private ClaimService claimService;
-    public ClaimController(ClaimService claimService){
+    public ClaimController(ClaimService claimService, PdfFileRepository pdfFileRepository, UserRepository userRepository){
+        this.pdfFileRepository = pdfFileRepository;
+        this.userRepository = userRepository;
         this.claimService = claimService;
     }
     @GetMapping("/claims")
@@ -34,14 +42,19 @@ public class ClaimController {
 
         List<ClaimDto> claims = claimService.findAllClaims();
         model.addAttribute("claims", claims);
+        model.addAttribute("files", pdfFileRepository.findAll());
         return "admin/claim/list-claimed";
     }
 
     @GetMapping("/user-claims")
     public String listUserClaims(@AuthenticationPrincipal CustomUserDetails loggedUser, Model model){
+
+
+
         long id = loggedUser.getId();
         List<ClaimDto> claims = claimService.findAllUserClaims(id);
         model.addAttribute("claims", claims);
+        model.addAttribute("files", pdfFileRepository.findAll());
         return "user/myClaim/my-claim";
     }
 
@@ -62,6 +75,8 @@ public class ClaimController {
     public String saveUserClaim(@Valid @ModelAttribute("claim") ClaimDto claimDto, BindingResult result,
                                 @AuthenticationPrincipal CustomUserDetails loggedUser,Model model,
                                 @RequestParam("file") MultipartFile multipartFile) throws IOException {
+
+
 
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
         claimDto.setDocument(fileName);

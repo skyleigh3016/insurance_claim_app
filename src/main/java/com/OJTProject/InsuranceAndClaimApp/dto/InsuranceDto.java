@@ -31,8 +31,8 @@ public class InsuranceDto {
     // automatic red error in age coverage.
     //http link ung file na upload.
 
-//    @Min(value = 18, message = "minimum age is 18")
-//    @Max(value = 65, message = "maximum age is 65")
+    @Min(value = 18, message = "minimum age is 18")
+    @Max(value = 65, message = "maximum age is 65")
     private int age_coverage;
     @Min(value = 1, message = "minimum tenure is 1")
     @Max(value = 10, message = "maximum tenure is 10")

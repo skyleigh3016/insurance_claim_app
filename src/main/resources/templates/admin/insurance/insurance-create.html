@@ -201,7 +201,7 @@
                                 name="age_coverage"
                                 th:field="*{age_coverage}"
                                 placeholder="age_coverage"
-                        required>
+                                 required/>
                         <p th:if="${#fields.hasErrors('age_coverage')}" class="text-danger" th:errors="*{age_coverage}"></p>
                     </div>
                     <div class="form-group">
@@ -213,7 +213,8 @@
                                 name="tenure"
                                 th:field="*{tenure}"
                                 aria-describedby="emailHelp"
-                                placeholder="Enter tenure">
+                                placeholder="Enter tenure"
+                                required>
                         <p th:if="${#fields.hasErrors('tenure')}" class="text-danger" th:errors="*{tenure}"></p>
                     </div>
                     <div class="form-group">
@@ -224,7 +225,8 @@
                                 id="annual_premium"
                                 name="annual_premium"
                                 th:field="*{annual_premium}"
-                                placeholder="annual_premium">
+                                placeholder="annual_premium"
+                                required>
                         <p th:if="${#fields.hasErrors('annual_premium')}" class="text-danger" th:errors="*{annual_premium}"></p>
                     </div>
 
@@ -236,7 +238,8 @@
                                 id="monthly_premium"
                                 name="monthly_premium"
                                 th:field="*{monthly_premium}"
-                                placeholder="monthly_premium">
+                                placeholder="monthly_premium"
+                                required>
                         <p th:if="${#fields.hasErrors('monthly_premium')}" class="text-danger" th:errors="*{monthly_premium}"></p>
                     </div>
                     <div class="form-group">
@@ -247,7 +250,8 @@
                                 id="amount_insured"
                                 name="amount_insured"
                                 th:field="*{amount_insured}"
-                                placeholder="amount_insured">
+                                placeholder="amount_insured"
+                                required>
                         <p th:if="${#fields.hasErrors('amount_insured')}" class="text-danger" th:errors="*{amount_insured}"></p>
                     </div>
 

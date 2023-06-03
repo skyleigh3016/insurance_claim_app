@@ -111,7 +111,8 @@ public class ClientController {
             clientService.createVehicles(userId, vehiclesDto);
             beneficiaryService.insertBeneficiary1(userId,beneficiary,contact,age,address,beneficiary1,contact1,age1,address1,beneficiary2,contact2,age2,address2);
             dependentService.insertDependent(userId,dependent,contact3,age3,address3,dependent1,contact4,age4,address4,dependent2,contact5,age5,address5);
-            return "redirect:/users";
+            return "redirect:/users?success";
+
 
         }else {
 //            clientDto.setInsurances(insurances);

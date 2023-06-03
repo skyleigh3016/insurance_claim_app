@@ -44,12 +44,14 @@ const insurance_type = document.getElementById("insurance_type")
 const theDiv = document.getElementById("theDiv")
 const theDiv1 = document.getElementById("theDiv1")
 const theDiv2 = document.getElementById("theDiv2")
+var  inputElement = document.getElementById("age_coverage")
 
 insurance_type.addEventListener("change", function (event){
 	if (event.target.value == 'Vehicle_Insurance'){
 		theDiv.style.display = "none";
 		theDiv1.style.display = "block";
 		theDiv2.style.display = "block";
+		inputElement.value = 18;
 	}else {
 		theDiv.style.display = "block";
 		theDiv1.style.display = "none";
@@ -70,7 +72,7 @@ insurance_type1.addEventListener("change", function (event){
 		// theDiv.style.display = "none";
 		theDive1.style.display = "block";
 		theDive2.style.display = "block";
-		theDive3.style.display = "none";
+		theDive3.remove();
 
 	}
 	else {

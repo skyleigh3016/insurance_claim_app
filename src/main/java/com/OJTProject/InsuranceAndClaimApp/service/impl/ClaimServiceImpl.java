@@ -105,6 +105,7 @@ public class ClaimServiceImpl implements ClaimService {
                 .document(claim.getDocument())
                 .claim_amount(claim.getClaim_amount())
                 .status(claim.getStatus())
+                .user(claim.getUser())
                 .createdOn(claim.getCreatedOn())
                 .updatedOn(claim.getUpdatedOn())
                 .build();
@@ -120,6 +121,7 @@ public class ClaimServiceImpl implements ClaimService {
                 .document(claim.getDocument())
                 .claim_amount(claim.getClaim_amount())
                 .status(claim.getStatus())
+                .user(claim.getUser())
                 .createdOn(claim.getCreatedOn())
                 .updatedOn(claim.getUpdatedOn())
                 .build();

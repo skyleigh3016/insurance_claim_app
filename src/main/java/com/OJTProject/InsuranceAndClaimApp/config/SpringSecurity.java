@@ -32,7 +32,7 @@ public class SpringSecurity {
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers("/register/**","/register1/**").permitAll()
                                 .requestMatchers("/index").permitAll()
-                                .requestMatchers("/dashboard","/profile", "/img/**", "/css/**", "/js/**","static/img","/user-photos/","/user-photos/**").hasAnyRole("ADMIN","USER")
+                                .requestMatchers("/dashboard","/profile","/img/{claimId}","/","/upload","/display/{id}", "/img/**", "/css/**", "/js/**","static/img","/user-photos/","/user-photos/**").hasAnyRole("ADMIN","USER")
                                 .requestMatchers("/users","/user/register", "/user/save","/user/{userId}/delete","/vehicle","/client/{clientId}/view",
                                         "/Insurance","/insurance/new","/insurance/{insuranceId}/edit","/insurances/{insuranceId}/delete","/vehicle/{vehicleId}/edit","/claim/{claimId}/edit",
                                         "/ping","/display","/","/add","com.OJTProject.InsuranceAndClaimApp","/clients","/claims","/clients/{userId}/new","/clients/{userId}","/clients_info",

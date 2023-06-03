@@ -1,5 +1,6 @@
 <html
         xmlns:th="http://thymeleaf.org"
+        xmlns:th1="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
@@ -179,26 +180,31 @@
                     <h3>My Claimed Information</h3>
                     <a class="btn-btn-primary" th:href="@{/user-claim/new}"><i class='bx bx-plus'><span>Apply Claim</span></i> </a>
                 </div>
+
                 <table>
                     <thead>
                     <tr>
-                        <th>claimer</th>
-                        <th>client</th>
-                        <th>document</th>
-                        <th>claim_amount</th>
-                        <th>status</th>
+                        <th>ID</th>
+                        <th>Claimer</th>
+                        <th>Client</th>
+                        <th>Supporting document</th>
+                        <th>Claim Amount</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="claim :${claims}">
-
-                        <td>[[${claim.claimer}]]</td>
-                        <td>[[${claim.client}]]</td>
-                        <td>[[${claim.document}]]</td>
-                        <td>[[${claim.claim_amount}]]</td>
-                        <td>[[${claim.status}]]</td>
+                    <tr th:each="file : ${files}">
+                        <td th:text="${file.id}"></td>
+                        <td th:text="${file.claimer}"></td>
+                        <td th:text="${file.client}"></td>
+                        <td th:text="${file.fileName}"></td>
+                        <td th:text="${file.claim_amount}"></td>
+                        <td th:text="${file.status}"></td>
+                        <td>
+                            <a th:href="@{/display/{id}(id=${file.id})}" target="_blank">View Document</a>
+                        </td>
                     </tr>
-
                     </tbody>
                 </table>
             </div>

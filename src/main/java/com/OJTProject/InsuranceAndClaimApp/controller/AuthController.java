@@ -171,9 +171,12 @@ public class AuthController {
 
     // handler method to handle list of users
     @GetMapping("/users")
-    public String users(Model model){
+    public String users(@AuthenticationPrincipal CustomUserDetails loggedUser,Model model){
+        String email = loggedUser.getUsername();
+        User user = userService.getByEmail(email);
         List<UserDto> users = userService.findAllUsers();
         model.addAttribute("users", users);
+        model.addAttribute("user",user);
         return "admin/user/list-user";
     }
     // handler method to handle login request
@@ -195,7 +198,9 @@ public class AuthController {
             long amount = userService.totalAmount();
             long myAmount = userService.totalMyAmount(email);
             long vehicle = userService.countVehicle();
+            User user = userService.getByEmail(email);
             List<ResponseDto> clients = clientService.findAllClientInfo();
+            model.addAttribute("user",user);
             model.addAttribute("clients", clients);
             model.addAttribute("amount", amount);
             model.addAttribute("myAmount", myAmount);
@@ -214,7 +219,9 @@ public class AuthController {
         long amount = userService.totalAmount();
 //        long myAmount = userService.totalMyAmount(email);
         long vehicle = userService.countVehicle();
+        User user = userService.getByEmail(email);
         List<ResponseDto> clients = clientService.findAllClientInfo();
+        model.addAttribute("user",user);
         model.addAttribute("clients", clients);
         model.addAttribute("amount", amount);
 //        model.addAttribute("myAmount", myAmount);

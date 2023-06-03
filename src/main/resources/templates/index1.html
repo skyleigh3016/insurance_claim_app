@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>PDF File Upload</title>
+</head>
+<body>
+<h1>PDF File Upload</h1>
+
+<form method="post" action="/upload" enctype="multipart/form-data">
+  <input type="file" name="file" />
+  <button type="submit">Upload</button>
+</form>
+
+<h2>Uploaded Files</h2>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>File Name</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="file : ${files}">
+    <td th:text="${file.id}"></td>
+    <td th:text="${file.fileName}"></td>
+    <td>
+      <a th:href="@{/display/{id}(id=${file.id})}" target="_blank">View</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

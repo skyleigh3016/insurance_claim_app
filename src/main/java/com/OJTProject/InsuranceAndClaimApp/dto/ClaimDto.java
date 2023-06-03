@@ -1,5 +1,8 @@
 package com.OJTProject.InsuranceAndClaimApp.dto;
 
+import com.OJTProject.InsuranceAndClaimApp.model.Claim;
+import com.OJTProject.InsuranceAndClaimApp.model.Insurance;
+import com.OJTProject.InsuranceAndClaimApp.model.User;
 import lombok.Builder;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,4 +21,5 @@ public class ClaimDto {
     private String status;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
+    private User user;
 }

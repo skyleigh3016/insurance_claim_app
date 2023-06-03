@@ -166,6 +166,7 @@
                                     placeholder="Enter first name"
                                     th:field="*{firstName}"
                                     type="text"
+                                    required
                             />
                             <p th:errors = "*{firstName}" class="text-danger"
                                th:if="${#fields.hasErrors('firstName')}"></p>
@@ -180,6 +181,7 @@
                                     placeholder="Enter last name"
                                     th:field="*{lastName}"
                                     type="text"
+                                    required
                             />
                             <p th:errors = "*{lastName}" class="text-danger"
                                th:if="${#fields.hasErrors('lastName')}"></p>
@@ -208,6 +210,7 @@
                                     placeholder="Enter Age"
                                     th:field="*{age}"
                                     type="number"
+                                    required
                             />
                             <p th:errors = "*{age}" class="text-danger"
                                th:if="${#fields.hasErrors('age')}"></p>
@@ -221,6 +224,7 @@
                                     placeholder="Enter Gender"
                                     th:field="*{gender}"
                                     type="text "
+                                    required
                             />
                             <p th:errors = "*{gender}" class="text-danger"
                                th:if="${#fields.hasErrors('gender')}"></p>
@@ -244,6 +248,7 @@
                                     placeholder="Enter email address"
                                     th:field="*{email}"
                                     type="email"
+                                    required
                             />
                             <p th:errors = "*{email}" class="text-danger"
                                th:if="${#fields.hasErrors('email')}"></p>
@@ -258,6 +263,7 @@
                                     placeholder="Enter password"
                                     th:field="*{password}"
                                     type="password"
+                                    required
                             />
                             <p th:errors = "*{password}" class="text-danger"
                                th:if="${#fields.hasErrors('password')}"></p>
@@ -296,7 +302,9 @@
                                     type="text"
                                     class="form-control"
                                     id="barangay"
-                                    th:field="*{barangay}">
+                                    th:field="*{barangay}"
+                                    required
+                            />
                         </div>
 
                         <div class="col-md-3">
@@ -305,7 +313,9 @@
                                     type="text"
                                     class="form-control"
                                     id="municipality"
-                                    th:field="*{municipality}">
+                                    th:field="*{municipality}"
+                                    required
+                            />
                         </div>
 
                         <div class="col-md-3">
@@ -314,7 +324,9 @@
                                     type="text"
                                     class="form-control"
                                     id="state"
-                                    th:field="*{state}">
+                                    th:field="*{state}"
+                                    required
+                            />
                         </div>
 
                         <div class="col-md-3">
@@ -323,7 +335,9 @@
                                     type="text"
                                     class="form-control"
                                     id="country"
-                                    th:field="*{country}">
+                                    th:field="*{country}"
+                                    required
+                            />
                         </div>
 
                         <div class="col-md-3">
@@ -332,7 +346,9 @@
                                     type="number"
                                     class="form-control"
                                     id="postal_code"
-                                    th:field="*{postal_code}">
+                                    th:field="*{postal_code}"
+                                    required
+                            />
                         </div>
 
 
