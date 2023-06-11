@@ -136,19 +136,19 @@
 <!-- CONTENT -->
 <section  id="content">
     <!-- NAVBAR -->
-    <nav >
+    <nav>
         <i class='bx bx-menu' ></i>
 
 
         <!-- <input type="checkbox" id="switch-mode" hidden>
         <label for="switch-mode" class="switch-mode"></label> -->
         <a href="#" class="notification">
-            <!--            <span sec:authentication="name"> User</span>-->
-            <span sec:authentication="principal.username"> User</span>
-
+            <!--      <h5>Geraffe B. Andal</h5>-->
+            <span th:text = "${user.name}"> User</span>
         </a>
         <a href="#" class="profile">
-            <img th:src="@{/img/people.png}" alt="image" src="">
+            <img th:src="@{${user.avatar}}" alt="users dp" />
+            <!--            <img th:src="@{${user.avatar}}">-->
         </a>
     </nav>
     <!-- NAVBAR -->

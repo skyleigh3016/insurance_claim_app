@@ -7,6 +7,7 @@ import com.OJTProject.InsuranceAndClaimApp.dto.ResponseDto;
 import com.OJTProject.InsuranceAndClaimApp.dto.UserDto;
 
 import com.OJTProject.InsuranceAndClaimApp.model.Claim;
+import com.OJTProject.InsuranceAndClaimApp.model.PdfFile;
 import com.OJTProject.InsuranceAndClaimApp.model.User;
 import com.OJTProject.InsuranceAndClaimApp.repository.UserRepository;
 
@@ -52,10 +53,13 @@ public class AuthController {
 
     // handler method to handle user registration form request
     @GetMapping("/user/register")
-    public String userRegistrationForm(Model model){
+    public String userRegistrationForm(@AuthenticationPrincipal CustomUserDetails loggedUser,Model model){
         // create model object to store form data
-        UserDto user = new UserDto();
-        model.addAttribute("user", user);
+        String email = loggedUser.getUsername();
+        User user = userService.getByEmail(email);
+        UserDto user1 = new UserDto();
+        model.addAttribute("user", user1);
+        model.addAttribute("user1",user);
         return "admin/user/user-create";
     }
 
@@ -192,7 +196,8 @@ public class AuthController {
         long claims = claimService.findAllUserClaims1(email);
 
         if(claims != 0){
-            List<ClaimDto> claimDtos = claimService.findAllUserClaims(id);
+//            List<ClaimDto> claimDtos = claimService.findAllUserClaims(id);
+            List<PdfFile> pdfFiles = userService.findAllUserPdfClaims(id);
             long users = userService.countUsers();
             long life = userService.countLife();
             long amount = userService.totalAmount();
@@ -207,7 +212,7 @@ public class AuthController {
             model.addAttribute("users", users);
             model.addAttribute("life", life);
             model.addAttribute("vehicle", vehicle);
-            model.addAttribute("claims", claimDtos);
+            model.addAttribute("claims", pdfFiles);
             return "admin/index";
 
         }

@@ -100,19 +100,19 @@
 <!-- CONTENT -->
 <section  id="content">
   <!-- NAVBAR -->
-  <nav >
+  <nav>
     <i class='bx bx-menu' ></i>
 
 
     <!-- <input type="checkbox" id="switch-mode" hidden>
     <label for="switch-mode" class="switch-mode"></label> -->
     <a href="#" class="notification">
-      <!--            <span sec:authentication="name"> User</span>-->
-      <span sec:authentication="principal.username"> User</span>
-
+      <span th:text = "${user.name}"> User</span>
     </a>
     <a href="#" class="profile">
-      <img th:src="@{/img/people.png}" alt="image" src="">
+
+      <!--      <img th:src="@{/img/people.png}" alt="image" src="">-->
+      <img  th:src="@{${user.avatar}}" alt="users dp" />
     </a>
   </nav>
   <!-- NAVBAR -->
@@ -141,19 +141,19 @@
       <div class="order">
         <div class="head">
           <h3>Life Insurance Information</h3>
-          <a class="btn-btn-primary" th:href="@{/insurance/new}"><i class='bx bx-plus'><span>Add Life Insurance</span></i> </a>
+          <a class="btn-btn-primary" th:href="@{/insurance/new}"><i class='bx bx-plus'><span>Add Insurance</span></i> </a>
         </div>
         <table>
           <thead>
           <tr>
-            <th>insurance_type</th>
-                                    <th>vehicle_type</th>
-                                    <th>vehicle_uses</th>
+            <th>Insurance Type</th>
+                                    <th>Vehicle Type</th>
+                                    <th>Vehicle Uses</th>
 <!--            <th>age_coverage</th>-->
-            <th>tenure</th>
-            <th>annual_premium</th>
-            <th>monthly_premium</th>
-            <th>amount_insured</th>
+            <th>Tenure</th>
+            <th>Annual Premium</th>
+            <th>Monthly Premium</th>
+            <th>Amount Insured</th>
 
             <th>Action</th>
             <!--                        <th>createdOn</th>-->

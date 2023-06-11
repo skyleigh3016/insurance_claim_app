@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity(name = "PdfFileTest")
+@Entity(name = "pdf_claims")
 public class PdfFile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

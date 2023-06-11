@@ -103,10 +103,12 @@
         <!-- <input type="checkbox" id="switch-mode" hidden>
         <label for="switch-mode" class="switch-mode"></label> -->
         <a href="#" class="notification">
-            <span sec:authentication="principal.username"> User</span>
+            <span th:text = "${user.name}"> User</span>
         </a>
         <a href="#" class="profile">
-            <img th:src="@{/img/people.png}" alt="image" src="">
+
+            <!--      <img th:src="@{/img/people.png}" alt="image" src="">-->
+            <img  th:src="@{${user.avatar}}" alt="users dp" />
         </a>
     </nav>
     <!-- NAVBAR -->

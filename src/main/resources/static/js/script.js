@@ -25,11 +25,80 @@ function checkdelete()
 	return confirm('Are you sure you want to delete this record?');
 }
 
+// to stay the data in html input field
 
+// Function to save form data to localStorage
+// function saveFormData() {
+// 	var nameInput = document.getElementById("age_coverage");
+// 	var nameValue = nameInput.value;
+// 	localStorage.setItem("formNameValue", nameValue);
+// }
+//
+// // Function to populate form fields with saved data
+// window.onload = function() {
+// 	var savedNameValue = localStorage.getItem("formNameValue");
+// 	if (savedNameValue) {
+// 		var nameInput = document.getElementById("age_coverage");
+// 		if (nameInput) {
+// 			nameInput.value = savedNameValue;
+// 		}
+// 	}
+// };
 
-
-
-
+// function saveFormData() {
+// 	var nameInput = document.getElementById('age_coverage');
+// 	localStorage.setItem('formDataName', nameInput.value);
+//
+// 	// Add more code to save other form fields if needed
+// }
+//
+// // Populate input fields with stored form data on page load
+// window.onload = function() {
+// 	var nameInput = document.getElementById('age_coverage');
+// 	var storedName = localStorage.getItem('formDataName');
+// 	if (storedName) {
+// 		nameInput.value = storedName;
+// 	}
+//
+// 	// Add more code to populate other form fields if needed
+// };
+// 		function saveData() {
+// 	var inputField = document.getElementById("age_coverage");
+// 	// var inputField1 = document.getElementById("tenure");
+// 	// var inputField2 = document.getElementById("annual_premium");
+// 	// var inputField3 = document.getElementById("monthly_premium");
+// 	// var inputField4 = document.getElementById("amount_insured");
+// 	var value = inputField.value;
+// 	// var value1 = inputField1.value;
+// 	// var value2 = inputField2.value;
+// 	// var value3 = inputField3.value;
+// 	// var value4 = inputField4.value;
+// 	        localStorage.setItem("savedInput", value);
+// 			// localStorage.setItem("savedInput1", value1);
+// 			// localStorage.setItem("savedInput2", value2);
+// 			// localStorage.setItem("savedInput3", value3);
+// 			// localStorage.setItem("savedInput4", value4);
+// }
+//
+// 	window.onload = function() {
+// 	var savedValue = localStorage.getItem("savedInput");
+// 		// var savedValue1 = localStorage.getItem("savedInput1");
+// 		// var savedValue2 = localStorage.getItem("savedInput2");
+// 		// var savedValue3 = localStorage.getItem("savedInput3");
+// 		// var savedValue4 = localStorage.getItem("savedInput4");
+// 	if (savedValue) {
+// 	var inputField = document.getElementById("age_coverage");
+// 		// var inputField1 = document.getElementById("tenure");
+// 		// var inputField2 = document.getElementById("annual_premium");
+// 		// var inputField3 = document.getElementById("monthly_premium");
+// 		// var inputField4 = document.getElementById("amount_insured");
+// 	inputField.value = savedValue;
+// 	// inputField1.value = savedValue1;
+// 	// inputField2.value = savedValue2;
+// 	// inputField3.value = savedValue3;
+// 	// inputField4.value = savedValue4;
+// }
+// };
 
 
 // TOGGLE SIDEBAR
@@ -45,6 +114,7 @@ const theDiv = document.getElementById("theDiv")
 const theDiv1 = document.getElementById("theDiv1")
 const theDiv2 = document.getElementById("theDiv2")
 var  inputElement = document.getElementById("age_coverage")
+const vehicle_type = document.getElementById("vehicle_type")
 
 insurance_type.addEventListener("change", function (event){
 	if (event.target.value == 'Vehicle_Insurance'){
@@ -52,6 +122,8 @@ insurance_type.addEventListener("change", function (event){
 		theDiv1.style.display = "block";
 		theDiv2.style.display = "block";
 		inputElement.value = 18;
+		// theDiv1.setAttribute("data-custom-attribute", "required");
+		vehicle_type.required = true;
 	}else {
 		theDiv.style.display = "block";
 		theDiv1.style.display = "none";

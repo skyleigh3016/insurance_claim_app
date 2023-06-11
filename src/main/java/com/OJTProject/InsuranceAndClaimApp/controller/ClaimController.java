@@ -8,10 +8,12 @@ import com.OJTProject.InsuranceAndClaimApp.dto.ResponseDto;
 import com.OJTProject.InsuranceAndClaimApp.dto.ResponseUserClaimDto;
 import com.OJTProject.InsuranceAndClaimApp.model.Claim;
 
+import com.OJTProject.InsuranceAndClaimApp.model.User;
 import com.OJTProject.InsuranceAndClaimApp.repository.PdfFileRepository;
 import com.OJTProject.InsuranceAndClaimApp.repository.UserRepository;
 import com.OJTProject.InsuranceAndClaimApp.service.ClaimService;
 
+import com.OJTProject.InsuranceAndClaimApp.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -30,17 +32,21 @@ public class ClaimController {
     private final PdfFileRepository pdfFileRepository;
 
     private final UserRepository userRepository;
+    private UserService userService;
 
     private ClaimService claimService;
-    public ClaimController(ClaimService claimService, PdfFileRepository pdfFileRepository, UserRepository userRepository){
+    public ClaimController( UserService userService,ClaimService claimService, PdfFileRepository pdfFileRepository, UserRepository userRepository){
         this.pdfFileRepository = pdfFileRepository;
         this.userRepository = userRepository;
         this.claimService = claimService;
+        this.userService = userService;
     }
     @GetMapping("/claims")
-    public String listClaims(Model model){
-
+    public String listClaims(@AuthenticationPrincipal CustomUserDetails loggedUser,Model model){
+        String email = loggedUser.getUsername();
+        User user = userService.getByEmail(email);
         List<ClaimDto> claims = claimService.findAllClaims();
+        model.addAttribute("user", user);
         model.addAttribute("claims", claims);
         model.addAttribute("files", pdfFileRepository.findAll());
         return "admin/claim/list-claimed";
@@ -49,19 +55,24 @@ public class ClaimController {
     @GetMapping("/user-claims")
     public String listUserClaims(@AuthenticationPrincipal CustomUserDetails loggedUser, Model model){
 
-
+        String email = loggedUser.getUsername();
+        User user = userService.getByEmail(email);
 
         long id = loggedUser.getId();
         List<ClaimDto> claims = claimService.findAllUserClaims(id);
+        model.addAttribute("user", user);
         model.addAttribute("claims", claims);
         model.addAttribute("files", pdfFileRepository.findAll());
         return "user/myClaim/my-claim";
     }
 
     @GetMapping("/user-claim/new")
-    public String createUserClaimForm(Model model) {
+    public String createUserClaimForm(@AuthenticationPrincipal CustomUserDetails loggedUser, Model model) {
+        String email = loggedUser.getUsername();
+        User user = userService.getByEmail(email);
         Claim claim = new Claim();
         model.addAttribute("claim", claim);
+        model.addAttribute("user", user);
         return "user/myClaim/apply-claim";
     }
     @GetMapping("/claim/new")

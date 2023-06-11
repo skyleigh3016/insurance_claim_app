@@ -1,13 +1,12 @@
 package com.OJTProject.InsuranceAndClaimApp.service.impl;
 
+import com.OJTProject.InsuranceAndClaimApp.dto.ClaimDto;
 import com.OJTProject.InsuranceAndClaimApp.dto.UserDto;
 import com.OJTProject.InsuranceAndClaimApp.model.Claim;
+import com.OJTProject.InsuranceAndClaimApp.model.PdfFile;
 import com.OJTProject.InsuranceAndClaimApp.model.Role;
 import com.OJTProject.InsuranceAndClaimApp.model.User;
-import com.OJTProject.InsuranceAndClaimApp.repository.ClaimRepository;
-import com.OJTProject.InsuranceAndClaimApp.repository.InsuranceRepository;
-import com.OJTProject.InsuranceAndClaimApp.repository.RoleRepository;
-import com.OJTProject.InsuranceAndClaimApp.repository.UserRepository;
+import com.OJTProject.InsuranceAndClaimApp.repository.*;
 import com.OJTProject.InsuranceAndClaimApp.service.UserService;
 //import net.javaguides.springboot.dto.UserDto;
 //import net.javaguides.springboot.entity.Role;
@@ -28,18 +27,21 @@ public class UserServiceImpl implements UserService {
     private RoleRepository roleRepository;
     private InsuranceRepository insuranceRepository;
     private ClaimRepository claimRepository;
+    private PdfFileRepository pdfFileRepository;
     private PasswordEncoder passwordEncoder;
 
     public UserServiceImpl(UserRepository userRepository,
                            RoleRepository roleRepository,
                            PasswordEncoder passwordEncoder,
                            InsuranceRepository insuranceRepository,
-                           ClaimRepository claimRepository) {
+                           ClaimRepository claimRepository,
+                           PdfFileRepository pdfFileRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.insuranceRepository = insuranceRepository;
         this.claimRepository = claimRepository;
+        this.pdfFileRepository = pdfFileRepository;
     }
 
     @Override
@@ -173,6 +175,26 @@ public class UserServiceImpl implements UserService {
         return total;
     }
 
+    @Override
+    public List<PdfFile> findAllUserPdfClaims(long id) {
+        List<PdfFile> pdfFiles = pdfFileRepository.findByUserId(id);
+        return pdfFiles.stream().map((claim) -> mapToClaimDto(claim)).collect(Collectors.toList());
+    }
+
+    private PdfFile mapToClaimDto(PdfFile claim) {
+        PdfFile claimDto = PdfFile.builder()
+                .id(claim.getId())
+                .claimer(claim.getClaimer())
+                .client(claim.getClient())
+                .fileName(claim.getFileName())
+                .claim_amount(claim.getClaim_amount())
+                .status(claim.getStatus())
+                .user(claim.getUser())
+                .createdOn(claim.getCreatedOn())
+                .updatedOn(claim.getUpdatedOn())
+                .build();
+        return claimDto;
+    }
 
 
     private User mapToUserDto1(User user) {

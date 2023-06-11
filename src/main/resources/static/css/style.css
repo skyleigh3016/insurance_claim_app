@@ -217,7 +217,7 @@ body {
 	color: var(--blue);
 }
 #content nav form {
-	max-width: 400px;
+	max-width: 600px;
 	width: 100%;
 	margin-right: auto;
 }
@@ -251,11 +251,12 @@ body {
 	border-radius: 0 36px 36px 0;
 	cursor: pointer;
 }
+/*for adjustment of navigation*/
 #content nav .notification {
 	font-size: 20px;
 	position: relative;
-	margin-left: 800px;
-
+	margin-left: 900px;
+	/*margin-right: 800px;*/
 }
 #content nav .notification .num {
 	position: absolute;
@@ -278,7 +279,8 @@ body {
 	height: 36px;
 	object-fit: cover;
 	border-radius: 50%;
-
+	margin-left: 10px;
+    float: right;
 }
 #content nav .switch-mode {
 	display: block;

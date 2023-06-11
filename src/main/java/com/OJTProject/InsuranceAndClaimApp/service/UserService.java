@@ -4,6 +4,7 @@ package com.OJTProject.InsuranceAndClaimApp.service;
 
 import com.OJTProject.InsuranceAndClaimApp.dto.UserDto;
 import com.OJTProject.InsuranceAndClaimApp.model.Claim;
+import com.OJTProject.InsuranceAndClaimApp.model.PdfFile;
 import com.OJTProject.InsuranceAndClaimApp.model.User;
 
 import java.util.List;
@@ -36,7 +37,9 @@ public interface UserService {
 
     long totalMyAmount(String email);
 
+    List<PdfFile> findAllUserPdfClaims(long id);
 
+//    long findAllUserClaims1(String email);
 
 
 //    Object findByUsername(String un);

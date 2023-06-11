@@ -132,14 +132,20 @@ public class ClientController {
 
 
     @GetMapping("/clients_info")
-    public String listClientInfo(Model model){
+    public String listClientInfo(@AuthenticationPrincipal CustomUserDetails loggedUser,Model model){
+        String email = loggedUser.getUsername();
+        User user = userService.getByEmail(email);
         List<ResponseDto> clients = clientService.findAllClientInfo();
+        model.addAttribute("user", user);
         model.addAttribute("clients", clients);
         return "admin/client/list-client";
     }
 
     @GetMapping("/client/{clientId}/view")
-    public String viewClient(@PathVariable("clientId")Long userId, Model model){
+    public String viewClient(@PathVariable("clientId")Long userId,
+                             @AuthenticationPrincipal CustomUserDetails loggedUser,Model model){
+        String email = loggedUser.getUsername();
+        User user1 = userService.getByEmail(email);
         User user = userService.findUserById(userId);
         List<BeneficiaryDto> beneficiary = beneficiaryService.findUserInsurance1(userId);
         List<DependentDto> dependent = dependentService.findUserInsurance(userId);
@@ -148,14 +154,17 @@ public class ClientController {
         model.addAttribute("dependent",dependent);
         model.addAttribute("vehicle",vehicle);
         model.addAttribute("user",user);
+        model.addAttribute("user1",user1);
         return "admin/client/view-client";
     }
 
     @GetMapping("/my-insurance")
     public String myInsuranceInfo(@AuthenticationPrincipal CustomUserDetails loggedUser, Model model){
         String email = loggedUser.getUsername();
+        User user = userService.getByEmail(email);
         List<ResponseDto> clients = clientService.findMyInsuranceInfo(email);
         model.addAttribute("clients", clients);
+        model.addAttribute("user",user);
         return "user/myInsurance/my-insurance";
     }
 
